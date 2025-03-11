@@ -1,5 +1,0 @@
-name: projects/ai-chatbot-lc-1741578444/policies/run.allowedIngress
-spec:
-  rules:
-  - allowAll: true
-
