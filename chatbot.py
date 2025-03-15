@@ -16,14 +16,16 @@ def chat():
         return jsonify({"error": "No message provided"}), 400
 
     try:
-        # ✅ New OpenAI API format
-       response = openai.chat.completions.create(
-    model="gpt-4o",
-    messages=[{"role": "system", "content": "You are LC AI, an AI automation expert."},
-              {"role": "user", "content": user_input}]
-)
+        # ✅ New OpenAI API format for v1.66.3+
+        response = openai.ChatCompletion.create(
+            model="gpt-4o",
+            messages=[
+                {"role": "system", "content": "You are LC AI, an AI automation expert."},
+                {"role": "user", "content": user_input}
+            ]
+        )
 
-        ai_reply = response.choices[0].message.content  # ✅ Correct way to extract AI response
+        ai_reply = response["choices"][0]["message"]["content"]  # ✅ Correct way to extract AI response
         return jsonify({"response": ai_reply})
 
     except openai.OpenAIError as e:
