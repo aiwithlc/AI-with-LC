@@ -1,23 +1,13 @@
-# ✅ CORS fix for production deployment
-
 import os
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import openai
 
 app = Flask(__name__)
 
-# ✅ CORRECT WAY: Allow lcacosta.com + localhost for dev
-from flask_cors import CORS
+# ✅ FINAL CORS FIX for Railway
+CORS(app, resources={r"/*": {"origins": "https://lcacosta.com"}})
 
-CORS(app, resources={r"/chat": {"origins": [
-    "https://lcacosta.com",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000"
-]}}, supports_credentials=True)
-
-
-
-# ✅ Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/chat", methods=["POST"])
@@ -34,8 +24,7 @@ def chat():
                 {"role": "user", "content": user_input}
             ]
         )
-        reply = response.choices[0].message.content
-        return jsonify({"response": reply})
+        return jsonify({"response": response.choices[0].message.content})
 
     except Exception as e:
         return jsonify({"error": f"OpenAI API error: {str(e)}"}), 500
