@@ -8,11 +8,8 @@ import openai
 app = Flask(__name__)
 
 # ✅ CORRECT WAY: Allow lcacosta.com + localhost for dev
-CORS(app, resources={r"/chat": {"origins": [
-    "https://lcacosta.com",
-    "http://localhost:3000",
-    "http://127.0.0.1:3000"
-]}})
+CORS(app, supports_credentials=True)
+
 
 # ✅ Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
