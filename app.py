@@ -2,13 +2,19 @@
 
 import os
 from flask import Flask, request, jsonify
-from flask_cors import CORS
 import openai
 
 app = Flask(__name__)
 
 # ✅ CORRECT WAY: Allow lcacosta.com + localhost for dev
-CORS(app, supports_credentials=True)
+from flask_cors import CORS
+
+CORS(app, resources={r"/chat": {"origins": [
+    "https://lcacosta.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]}}, supports_credentials=True)
+
 
 
 # ✅ Set OpenAI API key
