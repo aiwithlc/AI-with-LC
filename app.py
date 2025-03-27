@@ -6,7 +6,11 @@ import openai
 app = Flask(__name__)
 
 # ✅ FINAL CORS FIX for Railway
-CORS(app, resources={r"/*": {"origins": "https://lcacosta.com"}})
+CORS(app, resources={r"/chat": {"origins": [
+    "https://lcacosta.com",
+    "http://localhost:3000"
+]}}, supports_credentials=True)
+
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
