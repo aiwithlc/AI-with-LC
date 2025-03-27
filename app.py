@@ -4,7 +4,7 @@ from flask_cors import CORS
 import openai
 
 app = Flask(__name__)
-from flask_cors import CORS
+# ✅ Allow requests from https://lcacosta.com
 
 CORS(app, resources={r"/chat": {"origins": "https://lcacosta.com"}})
 
