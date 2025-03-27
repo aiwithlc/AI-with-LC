@@ -4,12 +4,15 @@ from flask_cors import CORS
 import openai
 
 app = Flask(__name__)
-# ✅ Allow requests from https://lcacosta.com
 
-CORS(app, resources={r"/chat": {"origins": "https://lcacosta.com"}})
+# ✅ CORRECT WAY: Allow lcacosta.com + localhost for dev
+CORS(app, resources={r"/chat": {"origins": [
+    "https://lcacosta.com",
+    "http://localhost:3000",
+    "http://127.0.0.1:3000"
+]}})
 
-
-# ✅ Set OpenAI API Key from environment
+# ✅ Set OpenAI API key
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
 @app.route("/chat", methods=["POST"])
@@ -19,9 +22,8 @@ def chat():
         return jsonify({"error": "No message provided"}), 400
 
     try:
-        # ✅ GPT-4o response
         response = openai.chat.completions.create(
-    model="gpt-3.5-turbo-0125",
+            model="gpt-3.5-turbo-0125",
             messages=[
                 {"role": "system", "content": "You are LC's warm, helpful, expert AI assistant."},
                 {"role": "user", "content": user_input}
