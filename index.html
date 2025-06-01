@@ -416,7 +416,7 @@
         <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sample One-Page – Visual Artist</title>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
@@ -450,10 +450,13 @@
     }
 
     .hero img {
+      width: auto;
       max-width: 100%;
+      height: auto;
+      max-height: 80vh;
       border-radius: 12px;
-      margin-top: 1rem;
-      max-height: 200px;
+      margin: 1.5rem auto 0;
+      display: block;
     }
 
     .features {
@@ -462,18 +465,27 @@
       margin: 0 auto 3rem;
     }
 
-    .features h2 {
+    .gallery-heading {
       color: #BBB0E0;
+      font-size: 1.6rem;
+      margin-top: 3rem;
       margin-bottom: 1rem;
     }
 
-    .features ul {
-      list-style: none;
-      padding: 0;
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin: 2rem auto;
+      max-width: 900px;
     }
 
-    .features li {
-      margin-bottom: 0.75rem;
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      object-fit: cover;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
     }
 
     .testimonial {
@@ -504,18 +516,56 @@
       text-decoration: none;
     }
 
+    .contact {
+      max-width: 520px;
+      margin: 3rem auto;
+      padding: 2rem;
+      background: #f3f0fa;
+      border-radius: 1rem;
+    }
+
+    .contact h2 {
+      color: #BBB0E0;
+      margin-bottom: 1rem;
+    }
+
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    .contact input,
+    .contact textarea {
+      padding: 0.75rem;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact button {
+      background: #BBB0E0;
+      color: white;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 999px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
     footer {
       margin-top: 3rem;
       font-size: 0.85rem;
       color: #aaa;
     }
 
-      .built-by {
+    .built-by {
       font-size: 0.70rem;
       margin-top: 0.5rem;
       color: #aaa;
     }
-          .portrait-img {
+
+    .portrait-img {
       width: 120px;
       height: 120px;
       border-radius: 50%;
@@ -528,7 +578,7 @@
 </head>
 <body>
 
-    <img src="https://images.pexels.com/photos/4483130/pexels-photo-4483130.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Your Portrait" class="portrait-img">
+  <img src="https://media.istockphoto.com/id/1364209752/photo/self-employed-painter-looking-at-the-camera-cheerfully.jpg?s=2048x2048&w=is&k=20&c=iwY59_wttToaL6EZldsqU-78f0aIMIZcTCsR3auGJ5U=" alt="Your Portrait" class="portrait-img">
   <h1>Mira Sage</h1>
   <p class="subtitle">Mixed media artist exploring light, shadow, and story ✨</p>
 
@@ -538,24 +588,31 @@
     <img src="https://images.pexels.com/photos/2983141/pexels-photo-2983141.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Hero Artwork">
   </div>
 
-  <div class="features">
-    <h2>🖌️ Explore</h2>
-    <ul>
-      <li>🎨 Featured Works</li>
-      <li>🛍️ Shop Originals + Prints</li>
-      <li>📍 Upcoming Exhibitions</li>
-    </ul>
+  <h2 class="gallery-heading">🎨 Gallery Highlights</h2>
+  <div class="gallery">
+    <img src="https://images.pexels.com/photos/3889846/pexels-photo-3889846.jpeg" alt="Artwork 1">
+    <img src="https://images.pexels.com/photos/3769537/pexels-photo-3769537.jpeg" alt="Artwork 2">
+    <img src="https://images.pexels.com/photos/4588015/pexels-photo-4588015.jpeg" alt="Artwork 3">
+    <img src="https://images.pexels.com/photos/1697417/pexels-photo-1697417.jpeg" alt="Artwork 4">
   </div>
 
   <div class="testimonial">
-    <img src="https://images.pexels.com/photos/1182825/pexels-photo-1182825.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="Client">
+    <img src="https://images.pexels.com/photos/1182825/pexels-photo-1182825.jpeg" alt="Client">
     <p>"Mira’s work isn’t just beautiful — it stays with you. Her site made it so easy to fall in love and collect."<br><strong>– Omar López</strong></p>
   </div>
 
-  <a href="#" class="cta">View Gallery</a>
+  <div class="contact">
+    <h2>Get in Touch</h2>
+    <form action="#" method="post">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="4" placeholder="Your Message"></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </div>
 
   <footer>
-   <div class="copyright"> © 2025 Mira Sage • contact@mirasage.fake</div>
+    <div class="copyright"> © 2025 Mira Sage • contact@mirasage.fake</div>
     <div class="built-by">Made with <span class="sparkle-heart">♥</span> by <a href="https://lcacosta.com">LC</a></div>
   </footer>
 
